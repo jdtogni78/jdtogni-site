@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daniel Togni — engineer building agentic AI on real systems</title>
+  <meta name="description" content="Staff-level engineer and hands-on tech lead. I run a live algorithmic trading engine that feeds a family portfolio platform, with an agentic research layer on top.">
+  <meta property="og:title" content="Daniel Togni — engineer building agentic AI on real systems">
+  <meta property="og:description" content="A live trading engine + a family portfolio platform + an LLM research layer with an eval set.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href="index.html">Daniel&nbsp;Togni</a>
+      <nav class="nav">
+        <a href="dstrader.html">DS&nbsp;Trader</a>
+        <a href="familyfund.html">FamilyFund</a>
+        <a href="https://github.com/jdtogni78">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero" style="border-top:0">
+        <p class="kicker">Staff engineer · hands-on tech lead</p>
+        <h1>I build and operate real systems&nbsp;— and I'm putting agentic AI into them.</h1>
+        <p class="lede">
+          I run a live algorithmic trading engine that manages real brokerage
+          accounts and feeds a portfolio platform my family uses every day. On top
+          of that data I built an agentic research layer: every position carries an
+          LLM-maintained thesis tied to SEC filings, with automated drift
+          detection — shipped with an eval set.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="dstrader.html">See the AI work</a>
+          <a class="btn" href="familyfund.html">See FamilyFund</a>
+          <a class="btn" href="https://github.com/jdtogni78">GitHub</a>
+        </div>
+      </section>
+    </div>
+
+    <div class="wrap">
+      <section id="platform">
+        <h2>One integrated platform, not a tutorial repo</h2>
+        <p class="sub">
+          Two apps I built and operate, wired together — and the AI layer that sits
+          on their shared data.
+        </p>
+
+        <svg class="diagram" viewBox="0 0 760 270" role="img"
+             aria-label="Architecture: brokerages feed the DS Trader engine, which feeds FamilyFund; a research agent reads SEC EDGAR and maintains a thesis store visible to FamilyFund.">
+          <defs>
+            <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 z" fill="#5b6470"></path>
+            </marker>
+          </defs>
+          <!-- top row: live data flow -->
+          <g font-family="-apple-system, Segoe UI, Roboto, sans-serif" font-size="13" fill="#15171c" text-anchor="middle">
+            <rect x="8"   y="44" width="168" height="56" rx="10" fill="#f6f7f9" stroke="#cdd3db"></rect>
+            <text x="92"  y="68">Brokerages &amp;</text><text x="92" y="86">market data</text>
+            <rect x="296" y="44" width="168" height="56" rx="10" fill="#eef0fe" stroke="#3a4ee8"></rect>
+            <text x="380" y="68">DS Trader engine</text><text x="380" y="86" fill="#5b6470">Java 21 · IB API</text>
+            <rect x="584" y="44" width="168" height="56" rx="10" fill="#f6f7f9" stroke="#cdd3db"></rect>
+            <text x="668" y="68">FamilyFund</text><text x="668" y="86" fill="#5b6470">Laravel · used daily</text>
+            <!-- bottom row: research flow -->
+            <rect x="8"   y="170" width="168" height="56" rx="10" fill="#f6f7f9" stroke="#cdd3db"></rect>
+            <text x="92"  y="194">SEC EDGAR</text><text x="92" y="212" fill="#5b6470">filings</text>
+            <rect x="296" y="170" width="168" height="56" rx="10" fill="#eef0fe" stroke="#3a4ee8"></rect>
+            <text x="380" y="194">Research agent</text><text x="380" y="212" fill="#5b6470">LLM · tool use</text>
+            <rect x="584" y="170" width="168" height="56" rx="10" fill="#f6f7f9" stroke="#cdd3db"></rect>
+            <text x="668" y="194">Thesis store</text><text x="668" y="212" fill="#5b6470">+ drift, per holding</text>
+          </g>
+          <g stroke="#5b6470" stroke-width="1.6" fill="none" marker-end="url(#ah)">
+            <line x1="176" y1="72"  x2="292" y2="72"></line>
+            <line x1="464" y1="72"  x2="580" y2="72"></line>
+            <line x1="176" y1="198" x2="292" y2="198"></line>
+            <line x1="464" y1="198" x2="580" y2="198"></line>
+          </g>
+          <g stroke="#3a4ee8" stroke-width="1.4" fill="none" stroke-dasharray="4 3" marker-end="url(#ah)">
+            <line x1="380" y1="166" x2="380" y2="104"></line>
+            <line x1="668" y1="166" x2="668" y2="104"></line>
+          </g>
+          <g font-family="-apple-system, sans-serif" font-size="11" fill="#5b6470" text-anchor="middle">
+            <text x="234" y="64">prices</text>
+            <text x="522" y="64">REST</text>
+            <text x="700" y="140">thesis</text>
+          </g>
+        </svg>
+        <p class="diagram-caption">
+          Live prices/positions flow left-to-right; the research agent (blue) reads
+          filings and maintains a thesis per holding that surfaces back in the
+          platform. <a href="dstrader.html#research">How the agent works →</a>
+        </p>
+
+        <blockquote class="quote">
+          “Every position has an LLM-maintained thesis tied to SEC filings, with
+          drift detection. Here's the eval set.”
+        </blockquote>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <p class="sub">Both built and operated solo. The AI work leads.</p>
+        <div class="cards">
+          <article class="card">
+            <h3>DS Trader + research agent</h3>
+            <p class="muted">A live algorithmic trading engine with an agentic
+              research layer and a published eval harness.</p>
+            <div class="tags">
+              <span class="tag">Java 21</span>
+              <span class="tag">Interactive Brokers</span>
+              <span class="tag">LLM agents</span>
+              <span class="tag">SEC EDGAR</span>
+            </div>
+            <div class="links">
+              <a href="dstrader.html">Read more →</a>
+              <a href="https://github.com/jdtogni78">GitHub</a>
+            </div>
+          </article>
+          <article class="card">
+            <h3>FamilyFund</h3>
+            <p class="muted">A self-hosted family portfolio platform with automatic
+              price/position feeds and quarterly reports — in production at home.</p>
+            <div class="tags">
+              <span class="tag">Laravel 11</span>
+              <span class="tag">PHP 8.2</span>
+              <span class="tag">1,791 tests</span>
+              <span class="tag">Livewire</span>
+            </div>
+            <div class="links">
+              <a href="familyfund.html">Read more →</a>
+              <a href="https://github.com/jdtogni78">GitHub</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="writing">
+        <h2>Writing</h2>
+        <p class="sub">Short notes on what surprised me building agents over real data.</p>
+        <ul>
+          <li><a href="dstrader.html#research">Eval harness: what precision/recall
+            taught me about filing-grounded theses</a> <span class="muted">— in progress</span></li>
+          <li class="muted">Drift detection: turning "the story changed" into a
+            scheduled job — coming soon</li>
+        </ul>
+      </section>
+
+      <section id="about">
+        <h2>About</h2>
+        <p>
+          Builder-first. Over 20 years I've gone CAD → mobile → two startups
+          (including my own) → Visa, shipping and owning real products the whole
+          way. I operate what I build: live trading against a brokerage API, a
+          platform my family depends on, real backups and scheduled jobs.
+        </p>
+        <p>
+          I'm comfortable leading a small team (2–4) while staying deep in the
+          code. What I'm after now: a <strong>staff-level IC or hands-on tech-lead
+          role at an early-stage AI startup</strong> — building agent systems on
+          real data, not slideware.
+        </p>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>
+          <a href="mailto:jdtogni@gmail.com">jdtogni@gmail.com</a> ·
+          <a href="https://github.com/jdtogni78">GitHub</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      © <span id="yr">2026</span> Daniel Togni ·
+      <a href="dstrader.html">DS Trader</a> ·
+      <a href="familyfund.html">FamilyFund</a>
+    </div>
+  </footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

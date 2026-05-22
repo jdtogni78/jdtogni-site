@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DS Trader — live trading engine + agentic research layer</title>
+  <meta name="description" content="A live algorithmic trading system in Java with an LLM research agent that maintains a filing-grounded thesis per position, with drift detection and an eval harness.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href="index.html">Daniel&nbsp;Togni</a>
+      <nav class="nav">
+        <a href="dstrader.html">DS&nbsp;Trader</a>
+        <a href="familyfund.html">FamilyFund</a>
+        <a href="https://github.com/jdtogni78">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero" style="border-top:0">
+        <p class="kicker">Java 21 · Interactive Brokers · agentic research</p>
+        <h1>A live algorithmic trading system with an agentic research layer.</h1>
+        <p class="lede">
+          Runs in Docker against the Interactive Brokers API, manages real
+          accounts, and maintains an LLM-written investment thesis for every
+          position — each tied to SEC filings, with automated drift detection.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="#research">Read the research agent</a>
+          <a class="btn" href="https://github.com/jdtogni78">GitHub</a>
+          <a class="btn" href="familyfund.html">See FamilyFund</a>
+        </div>
+        <p class="note">
+          Framing: this is a <strong>research and thesis-management</strong> system
+          built on a trading engine — not an "AI stock picker." No returns or
+          performance claims. The signal here is engineering and eval rigor.
+        </p>
+      </section>
+    </div>
+
+    <div class="wrap">
+      <section>
+        <h2>What it does</h2>
+        <div class="blocks">
+          <div class="block">
+            <strong>Trades automatically across real accounts.</strong>
+            Connects to Interactive Brokers TWS and runs rule-based rebalancing
+            strategies against live and paper accounts, every day.
+          </div>
+          <div class="block">
+            <strong>Explains every holding.</strong>
+            A research agent reads SEC filings and maintains a written thesis per
+            position — there's always a documented <em>why I own this</em>.
+          </div>
+          <div class="block">
+            <strong>Tells you when the story changes.</strong>
+            A drift detector re-reads new filings against the stored thesis and
+            flags material deltas in the daily report.
+          </div>
+        </div>
+      </section>
+
+      <section id="research">
+        <h2>The research agent</h2>
+        <p class="sub">The part that matters most — concrete, with an eval set.</p>
+        <dl class="spec">
+          <div><dt>Problem</dt><dd>A portfolio of positions with zero documented
+            rationale. Most retail systems <em>pick</em>; few <em>explain and
+            revisit</em>.</dd></div>
+          <div><dt>Thesis store</dt><dd><code>position_theses</code>,
+            <code>position_thesis_history</code> (versioned),
+            <code>thesis_evidence</code> (assertions linked to specific filing
+            chunks). Schema lives in FamilyFund.</dd></div>
+          <div><dt>Thesis generator</dt><dd>Agent with tool-use over SEC EDGAR
+            (free): filing search, section extraction, fundamentals lookup —
+            produces the initial thesis per holding.</dd></div>
+          <div><dt>Drift detector</dt><dd>Scheduled job; re-reads new filings vs.
+            the stored thesis and surfaces deltas into the daily HTML email
+            report.</dd></div>
+          <div><dt>Eval harness</dt><dd>~50 labeled filings with precision/recall
+            reported openly. This is what makes it a portfolio piece and not a
+            demo.</dd></div>
+        </dl>
+        <blockquote class="quote">
+          “Every position has an LLM-maintained thesis tied to SEC filings, with
+          drift detection. Here's the eval set.”
+        </blockquote>
+        <p class="muted">Eval results table — coming once the harness run is captured.</p>
+      </section>
+
+      <section>
+        <h2>How it works</h2>
+        <dl class="spec">
+          <div><dt>Engine</dt><dd>Java 21, Maven, runs in Docker; daily cron.</dd></div>
+          <div><dt>Broker</dt><dd>Interactive Brokers TWS API; live + paper across
+            multiple real accounts.</dd></div>
+          <div><dt>Data in</dt><dd><code>fin-export</code> (Python) aggregates
+            Monarch / Fidelity / Schwab / TechCU; SEC EDGAR for filings.</dd></div>
+          <div><dt>Data out</dt><dd>Pushes positions &amp; prices to FamilyFund via
+            REST (<code>POST /api/asset_prices_bulk_update</code>,
+            <code>POST /api/portfolio_assets_bulk_update</code>).</dd></div>
+          <div><dt>Reporting</dt><dd>HTML email reports with JFreeChart charts.</dd></div>
+        </dl>
+      </section>
+
+      <section>
+        <h2>Strategies</h2>
+        <p class="sub">Mechanical and rule-driven — the AI layer is research, not
+          signal generation.</p>
+        <div class="cards">
+          <article class="card"><h3>SimpleRebalance</h3>
+            <p class="muted">Rules-based target-weight rebalancing.</p></article>
+          <article class="card"><h3>LinearRegression</h3>
+            <p class="muted">Trend-based signal.</p></article>
+          <article class="card"><h3>EasyQuitter</h3>
+            <p class="muted">Exit / risk rule.</p></article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Engineering &amp; operations</h2>
+        <ul>
+          <li>~40 test classes.</li>
+          <li>Daily scheduled execution (cron) in production.</li>
+          <li>Multi-account orchestration against a real brokerage API.</li>
+          <li>HTML / charting report pipeline.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>The integrated platform</h2>
+        <p>
+          DS Trader is one half of a two-app platform. It feeds
+          <a href="familyfund.html">FamilyFund</a>, a Laravel portfolio app my
+          family actually uses. The research / thesis layer is visible to both.
+        </p>
+      </section>
+
+      <section id="contact">
+        <h2>About / contact</h2>
+        <p>Built and operated solo. —
+          <a href="mailto:jdtogni@gmail.com">jdtogni@gmail.com</a> ·
+          <a href="https://github.com/jdtogni78">GitHub</a> ·
+          <a href="index.html">back to home</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      © <span id="yr">2026</span> Daniel Togni ·
+      <a href="index.html">Home</a> ·
+      <a href="familyfund.html">FamilyFund</a>
+    </div>
+  </footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

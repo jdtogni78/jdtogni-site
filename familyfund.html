@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FamilyFund — manage shared family wealth like a fund</title>
+  <meta name="description" content="A self-hosted Laravel portfolio platform that tracks funds, accounts, holdings and goals across a family, with automatic price feeds and quarterly reports. 1,791 passing tests; in production at home.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href="index.html">Daniel&nbsp;Togni</a>
+      <nav class="nav">
+        <a href="dstrader.html">DS&nbsp;Trader</a>
+        <a href="familyfund.html">FamilyFund</a>
+        <a href="https://github.com/jdtogni78">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero" style="border-top:0">
+        <p class="kicker">Laravel 11 · 1,791 passing tests · in production at home</p>
+        <h1>Manage shared family wealth like a fund.</h1>
+        <p class="lede">
+          A self-hosted portfolio platform that tracks funds, accounts, holdings
+          and goals across a family — with automatic price/position feeds and
+          quarterly reports. Built with Laravel, in production at home, used by my
+          family today.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="#under-the-hood">See the architecture</a>
+          <a class="btn" href="dstrader.html">See DS Trader</a>
+          <a class="btn" href="https://github.com/jdtogni78">GitHub</a>
+        </div>
+      </section>
+    </div>
+
+    <div class="wrap">
+      <section>
+        <h2>What it does</h2>
+        <p class="sub">Real accounting for a household, not a spreadsheet.</p>
+        <div class="cards">
+          <article class="card"><h3>Funds &amp; accounts</h3>
+            <p class="muted">Model shared pools and individual accounts.</p></article>
+          <article class="card"><h3>Holdings &amp; prices</h3>
+            <p class="muted">Assets with historical pricing across portfolios.</p></article>
+          <article class="card"><h3>Transactions</h3>
+            <p class="muted">A full ledger of every movement.</p></article>
+          <article class="card"><h3>Goals</h3>
+            <p class="muted">Track targets and progress over time.</p></article>
+          <article class="card"><h3>Matching rules</h3>
+            <p class="muted">Automate contributions and allocations.</p></article>
+          <article class="card"><h3>Credit lines</h3>
+            <p class="muted">Internal lending between accounts.</p></article>
+          <article class="card"><h3>Quarterly reports</h3>
+            <p class="muted">PDF statements generated and emailed automatically.</p></article>
+          <article class="card"><h3>Brokerage ingestion</h3>
+            <p class="muted">Imports Interactive Brokers Flex statements.</p></article>
+        </div>
+      </section>
+
+      <section>
+        <h2>The story</h2>
+        <p>
+          Built to give a family a single, honest view of shared money — treating
+          the household like a small fund with real accounting. It runs in
+          production at home and my family actually uses it. That continuous, real
+          usage is the credibility hook: it's not a demo.
+        </p>
+      </section>
+
+      <section>
+        <h2>Screenshots</h2>
+        <p class="muted">Screenshots with fully synthetic data — coming soon.</p>
+      </section>
+
+      <section id="under-the-hood">
+        <h2>Under the hood</h2>
+        <dl class="spec">
+          <div><dt>Stack</dt><dd>Laravel 11, PHP 8.2, MariaDB, Livewire/Volt,
+            Tailwind.</dd></div>
+          <div><dt>Domain model</dt><dd>Fund, Account, Transaction, Portfolio,
+            Asset, AssetPrice, Goal, AccountMatchingRule, CreditLine.</dd></div>
+          <div><dt>Jobs</dt><dd>Scheduled tasks for pricing, reports, and
+            ingestion.</dd></div>
+          <div><dt>Reporting</dt><dd>Quarterly PDF statements generated and
+            emailed.</dd></div>
+          <div><dt>Ingestion</dt><dd>IB Flex statement parsing; REST endpoints for
+            bulk price/position updates from DS Trader.</dd></div>
+          <div><dt>Testing</dt><dd><strong>1,791 passing tests.</strong></dd></div>
+          <div><dt>Ops</dt><dd>Self-hosted, multi-tier backups.</dd></div>
+        </dl>
+      </section>
+
+      <section>
+        <h2>The integrated platform</h2>
+        <p>
+          FamilyFund is one half of a two-app platform.
+          <a href="dstrader.html">DS Trader</a> — a live algorithmic trading engine
+          — pushes positions and prices in via REST. A research/thesis layer
+          (LLM-maintained thesis per holding, tied to SEC filings) sits on this data
+          and is visible to both apps. The AI framing is
+          <strong>research/thesis-management</strong>, not stock-picking.
+        </p>
+      </section>
+
+      <section>
+        <h2>Reliability &amp; operations</h2>
+        <ul>
+          <li>1,791 tests as a quality gate.</li>
+          <li>Scheduled jobs + cron in production.</li>
+          <li>Multi-tier backups.</li>
+          <li>Real, continuous family usage as the ultimate uptime test.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Roadmap</h2>
+        <ul>
+          <li><strong>Goal-coaching agent</strong> — consumer-facing AI over goals
+            and transactions (a different dataset from the trading thesis agent).</li>
+          <li><strong>Document layer / receipt OCR</strong> — no file-storage layer
+            today; a known future direction.</li>
+        </ul>
+      </section>
+
+      <section id="contact">
+        <h2>About / contact</h2>
+        <p>
+          <a href="mailto:jdtogni@gmail.com">jdtogni@gmail.com</a> ·
+          <a href="https://github.com/jdtogni78">GitHub</a> ·
+          <a href="index.html">back to home</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      © <span id="yr">2026</span> Daniel Togni ·
+      <a href="index.html">Home</a> ·
+      <a href="dstrader.html">DS Trader</a>
+    </div>
+  </footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
