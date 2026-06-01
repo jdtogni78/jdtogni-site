@@ -150,6 +150,22 @@ dl.spec dd { margin: 0; }
 .diagram { width: 100%; height: auto; margin: 8px 0 4px; }
 .diagram-caption { font-size: 14px; color: var(--muted); margin-top: 6px; }
 
+/* ---- screenshots gallery ---- */
+.shots { display: grid; gap: 32px; margin-top: 18px; }
+.shot { margin: 0; }
+.shot a { display: block; }
+.shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+.shot a:hover img { border-color: var(--ink); }
+.shot figcaption { margin-top: 10px; font-size: 14px; color: var(--muted); }
+.shot figcaption strong { color: var(--ink); font-weight: 600; }
+
 /* ---- footer ---- */
 .site-foot {
   border-top: 1px solid var(--line);
