@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FamilyFund — manage shared family wealth like a fund</title>
-  <meta name="description" content="A self-hosted Laravel portfolio platform that tracks funds, accounts, holdings and goals across a family, with automatic price feeds and quarterly reports. 1,791 passing tests; in production at home.">
+  <meta name="description" content="A self-hosted Laravel 12 portfolio platform — share-based bitemporal accounting, multi-account funds, multi-tenant ACL, ~240 test files / 2,200+ tests; in production at home.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,12 +22,14 @@
   <main>
     <div class="wrap">
       <section class="hero" style="border-top:0">
-        <p class="kicker">Laravel 11 · 1,791 passing tests · in production at home</p>
+        <p class="kicker">Laravel 12 · 2,200+ tests · in production at home</p>
         <h1>Manage shared family wealth like a fund.</h1>
         <p class="lede">
-          A self-hosted portfolio platform that tracks funds, accounts, holdings
-          and goals across a family — with automatic price/position feeds and
-          quarterly reports. Built with Laravel, in production at home, used by my
+          A self-hosted portfolio platform that tracks funds, accounts, holdings,
+          and goals across a family — with <strong>share-based fund accounting</strong>,
+          <strong>bitemporal history</strong>, multi-account funds, multi-tenant
+          access control, automatic price/position feeds, and quarterly PDF
+          reports. Built with Laravel 12, in production at home, used by my
           family today.
         </p>
         <div class="cta-row">
@@ -45,18 +47,25 @@
         <div class="cards">
           <article class="card"><h3>Funds &amp; accounts</h3>
             <p class="muted">Model shared pools and individual accounts.</p></article>
+          <article class="card"><h3>Multi-account funds</h3>
+            <p class="muted">A fund can hold multiple accounts — a consolidated
+              net-worth view across institutions.</p></article>
           <article class="card"><h3>Holdings &amp; prices</h3>
-            <p class="muted">Assets with historical pricing across portfolios.</p></article>
+            <p class="muted">Assets with full historical pricing across portfolios.</p></article>
           <article class="card"><h3>Transactions</h3>
             <p class="muted">A full ledger of every movement.</p></article>
-          <article class="card"><h3>Goals</h3>
-            <p class="muted">Track targets and progress over time.</p></article>
+          <article class="card"><h3>Goals &amp; projections</h3>
+            <p class="muted">Track targets and forward-looking projections over
+              time.</p></article>
           <article class="card"><h3>Matching rules</h3>
             <p class="muted">Automate contributions and allocations.</p></article>
           <article class="card"><h3>Credit lines</h3>
             <p class="muted">Internal lending between accounts.</p></article>
+          <article class="card"><h3>Multi-tenant ACL</h3>
+            <p class="muted">Other family members log in with isolated data.</p></article>
           <article class="card"><h3>Quarterly reports</h3>
-            <p class="muted">PDF statements generated and emailed automatically.</p></article>
+            <p class="muted">PDF statements generated and emailed automatically,
+              with new graphs and forward-looking projections.</p></article>
           <article class="card"><h3>Brokerage ingestion</h3>
             <p class="muted">Imports Interactive Brokers Flex statements.</p></article>
         </div>
@@ -67,31 +76,40 @@
         <p>
           Built to give a family a single, honest view of shared money — treating
           the household like a small fund with real accounting. It runs in
-          production at home and my family actually uses it. That continuous, real
-          usage is the credibility hook: it's not a demo.
+          production at home and my family actually uses it. That continuous,
+          real usage is the credibility hook: it's not a demo.
         </p>
       </section>
 
       <section>
         <h2>Screenshots</h2>
-        <p class="muted">Screenshots with fully synthetic data — coming soon.</p>
+        <p class="muted">Screenshots with fully synthetic data — coming as the
+          repo nears public release (security scans in progress).</p>
       </section>
 
       <section id="under-the-hood">
         <h2>Under the hood</h2>
         <dl class="spec">
-          <div><dt>Stack</dt><dd>Laravel 11, PHP 8.2, MariaDB, Livewire/Volt,
+          <div><dt>Stack</dt><dd>Laravel 12, PHP 8.2, MariaDB, Livewire 3,
             Tailwind.</dd></div>
+          <div><dt>Accounting</dt><dd><strong>Share-based fund accounting</strong>
+            (accounts hold shares, not dollars) over <strong>bitemporal tables</strong>
+            (start/end-dated balances, positions, and prices) — enabling an
+            <code>/as_of/{date}</code> time-travel API.</dd></div>
           <div><dt>Domain model</dt><dd>Fund, Account, Transaction, Portfolio,
             Asset, AssetPrice, Goal, AccountMatchingRule, CreditLine.</dd></div>
-          <div><dt>Jobs</dt><dd>Scheduled tasks for pricing, reports, and
-            ingestion.</dd></div>
-          <div><dt>Reporting</dt><dd>Quarterly PDF statements generated and
-            emailed.</dd></div>
-          <div><dt>Ingestion</dt><dd>IB Flex statement parsing; REST endpoints for
-            bulk price/position updates from DS Trader.</dd></div>
-          <div><dt>Testing</dt><dd><strong>1,791 passing tests.</strong></dd></div>
-          <div><dt>Ops</dt><dd>Self-hosted, multi-tier backups.</dd></div>
+          <div><dt>API</dt><dd>Token-guard REST API; bulk price/portfolio
+            ingestion endpoints consumed by DS Trader.</dd></div>
+          <div><dt>Access control</dt><dd>Multi-tenant role-based access (Spatie)
+            — family members log in with isolated data.</dd></div>
+          <div><dt>Jobs</dt><dd>Scheduled tasks for pricing, quarterly reports,
+            and brokerage ingestion.</dd></div>
+          <div><dt>Reporting</dt><dd>Quarterly PDF statements with forward-looking
+            projections and new graph types, generated and emailed.</dd></div>
+          <div><dt>Testing</dt><dd><strong>~240 test files / 2,200+ tests</strong>
+            across 5 suites (Unit, Feature, API, Repository, golden-data).</dd></div>
+          <div><dt>Ops</dt><dd>Self-hosted, multi-tier backups; security scans
+            in progress as the repo nears public release.</dd></div>
         </dl>
       </section>
 
@@ -99,18 +117,18 @@
         <h2>The integrated platform</h2>
         <p>
           FamilyFund is one half of a two-app platform.
-          <a href="dstrader.html">DS Trader</a> — a live algorithmic trading engine
-          — pushes positions and prices in via REST. A research/thesis layer
-          (LLM-maintained thesis per holding, tied to SEC filings) sits on this data
-          and is visible to both apps. The AI framing is
-          <strong>research/thesis-management</strong>, not stock-picking.
+          <a href="dstrader.html">DS Trader</a> — a live, rules-based algorithmic
+          trading engine — pushes positions and prices in via REST. End-to-end
+          ownership across Java, PHP, Python, data modeling, API design, and
+          operations.
         </p>
       </section>
 
       <section>
         <h2>Reliability &amp; operations</h2>
         <ul>
-          <li>1,791 tests as a quality gate.</li>
+          <li><strong>~240 test files / 2,200+ tests</strong> across 5 suites as
+            a quality gate.</li>
           <li>Scheduled jobs + cron in production.</li>
           <li>Multi-tier backups.</li>
           <li>Real, continuous family usage as the ultimate uptime test.</li>
@@ -120,10 +138,10 @@
       <section>
         <h2>Roadmap</h2>
         <ul>
-          <li><strong>Goal-coaching agent</strong> — consumer-facing AI over goals
-            and transactions (a different dataset from the trading thesis agent).</li>
-          <li><strong>Document layer / receipt OCR</strong> — no file-storage layer
-            today; a known future direction.</li>
+          <li><strong>Public release</strong> — completing security scans, then
+            opening the repo with demo screenshots over synthetic data.</li>
+          <li><strong>Document layer / receipt OCR</strong> — no file-storage
+            layer today; a known future direction.</li>
         </ul>
       </section>
 
