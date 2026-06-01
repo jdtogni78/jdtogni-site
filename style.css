@@ -154,7 +154,8 @@ dl.spec dd { margin: 0; }
 .shots { display: grid; gap: 32px; margin-top: 18px; }
 .shot { margin: 0; }
 .shot a { display: block; }
-.shot img {
+.shot img,
+.shot video {
   width: 100%;
   height: auto;
   display: block;
