@@ -84,10 +84,11 @@ a:hover { text-decoration: underline; }
 /* ---- KPI strip ---- */
 .kpis {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 12px;
   padding: 0 0 24px;
   border-top: 0;
+  max-width: 560px;
 }
 .kpi {
   background: var(--bg-alt);
