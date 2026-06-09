@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FamilyFund — manage shared family wealth like a fund</title>
-  <meta name="description" content="A self-hosted Laravel 12 portfolio platform — share-based bitemporal accounting, multi-account funds, multi-tenant ACL, ~240 test files / 2,200+ tests; in production at home.">
+  <meta name="description" content="A self-hosted Laravel 12 portfolio platform — share-based bitemporal accounting, multi-account funds, multi-tenant ACL, ~240 test files / 2,200+ tests; live for 4 years.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,15 +22,14 @@
   <main>
     <div class="wrap">
       <section class="hero" style="border-top:0">
-        <p class="kicker">Laravel 12 · 2,200+ tests · in production at home</p>
+        <p class="kicker">Laravel 12 · 2,200+ tests · live for 4 years</p>
         <h1>Manage shared family wealth like a fund.</h1>
         <p class="lede">
           A self-hosted portfolio platform that tracks funds, accounts, holdings,
           and goals across a family — with <strong>share-based fund accounting</strong>,
           <strong>bitemporal history</strong>, multi-account funds, multi-tenant
           access control, automatic price/position feeds, and quarterly PDF
-          reports. Built with Laravel 12, in production at home, used by my
-          family today.
+          reports. Built with Laravel 12, live for 4 years.
         </p>
         <div class="cta-row">
           <a class="btn primary" href="#under-the-hood">See the architecture</a>
@@ -60,9 +59,11 @@
           <article class="card"><h3>Matching rules</h3>
             <p class="muted">Automate contributions and allocations.</p></article>
           <article class="card"><h3>Share loans</h3>
-            <p class="muted">Internal lending between accounts.</p></article>
+            <p class="muted">Internal lending — an account can borrow against its
+              own balance, with a schedule and a payment simulator.</p></article>
           <article class="card"><h3>Multi-tenant ACL</h3>
-            <p class="muted">Other family members log in with isolated data.</p></article>
+            <p class="muted">Family-member logins with isolated data &mdash;
+              multi-tenant by design.</p></article>
           <article class="card"><h3>Quarterly reports</h3>
             <p class="muted">PDF statements generated and emailed automatically,
               with new graphs and forward-looking projections.</p></article>
@@ -74,10 +75,11 @@
       <section>
         <h2>The story</h2>
         <p>
-          Built to give a family a single, honest view of shared money — treating
-          the household like a small fund with real accounting. It runs in
-          production at home and my family actually uses it. That continuous,
-          real usage is the credibility hook: it's not a demo.
+          Built to manage a fund for family members, aimed at generational
+          growth — treating the household like a small fund with real accounting,
+          not a spreadsheet. Live for 4 years; quarterly PDF statements are
+          generated and emailed to the family automatically. The continuous,
+          real operation is the credibility hook: it's not a demo.
         </p>
       </section>
 
@@ -132,13 +134,6 @@
           </figure>
           <figure class="shot">
             <video controls preload="metadata" width="1440" height="900"
-              src="assets/familyfund-demos/funds-and-accounts.mp4"></video>
-            <figcaption><strong>Funds &amp; accounts.</strong> From a fund's net asset
-              value all the way down to a single member's account, with point-in-time
-              reporting.</figcaption>
-          </figure>
-          <figure class="shot">
-            <video controls preload="metadata" width="1440" height="900"
               src="assets/familyfund-demos/account-deep-dive.mp4"></video>
             <figcaption><strong>Account deep-dive.</strong> One member's account &mdash;
               market value, goals, balances over time, performance, matching, and
@@ -169,7 +164,7 @@
           <div><dt>API</dt><dd>Token-guard REST API; bulk price/portfolio
             ingestion endpoints consumed by DS Trader.</dd></div>
           <div><dt>Access control</dt><dd>Multi-tenant role-based access (Spatie)
-            — family members log in with isolated data.</dd></div>
+            — family-member logins with isolated data.</dd></div>
           <div><dt>Jobs</dt><dd>Scheduled tasks for pricing, quarterly reports,
             and brokerage ingestion.</dd></div>
           <div><dt>Reporting</dt><dd>Quarterly PDF statements with forward-looking
@@ -199,15 +194,16 @@
             a quality gate.</li>
           <li>Scheduled jobs + cron in production.</li>
           <li>Multi-tier backups.</li>
-          <li>Real, continuous family usage as the ultimate uptime test.</li>
+          <li>Real, continuous daily use, with quarterly PDF reports delivered
+            to the family &mdash; the ultimate uptime test.</li>
         </ul>
       </section>
 
       <section>
         <h2>Roadmap</h2>
         <ul>
-          <li><strong>Public release</strong> — completing security scans, then
-            opening the repo with demo screenshots over synthetic data.</li>
+          <li><strong>Public repo release</strong> — completing security scans,
+            then opening the repo with demo screenshots over synthetic data.</li>
           <li><strong>Document layer / receipt OCR</strong> — no file-storage
             layer today; a known future direction.</li>
         </ul>
@@ -232,5 +228,42 @@
     </div>
   </footer>
   <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script>
+    (function () {
+      var box = null;
+      function close() {
+        if (!box) return;
+        box.remove();
+        box = null;
+        document.body.classList.remove('lightbox-open');
+        document.removeEventListener('keydown', onKey);
+      }
+      function onKey(e) { if (e.key === 'Escape') close(); }
+      function open(src, alt) {
+        close();
+        box = document.createElement('div');
+        box.className = 'lightbox';
+        box.innerHTML = '<button class="lightbox-close" aria-label="Close">×</button>';
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = alt || '';
+        box.appendChild(img);
+        box.addEventListener('click', function (e) {
+          if (e.target === box || e.target.classList.contains('lightbox-close') || e.target === img) close();
+        });
+        document.body.appendChild(box);
+        document.body.classList.add('lightbox-open');
+        document.addEventListener('keydown', onKey);
+      }
+      document.querySelectorAll('.shot a').forEach(function (a) {
+        var img = a.querySelector('img');
+        if (!img) return;
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          open(a.getAttribute('href') || img.src, img.alt);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

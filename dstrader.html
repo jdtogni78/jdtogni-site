@@ -74,9 +74,8 @@
           <div><dt>Strategies</dt><dd>Three independent rule-based strategies
             (SimpleRebalance, LinearRegression, EasyQuitter) behind a common
             execution interface.</dd></div>
-          <div><dt>Data in</dt><dd><code>fin-export</code> (Python) aggregates
-            holdings and transactions across Monarch / Fidelity / Schwab / a
-            credit union into a normalized feed.</dd></div>
+          <div><dt>Data in</dt><dd>Positions, prices, and executions read from
+            Interactive Brokers over the same TWS connection.</dd></div>
           <div><dt>Data out</dt><dd>Pushes positions &amp; prices to FamilyFund via
             REST (<code>POST /api/asset_prices_bulk_update</code>,
             <code>POST /api/portfolio_assets_bulk_update</code>).</dd></div>
