@@ -71,9 +71,9 @@
           <div><dt>Engine</dt><dd>Java 21, Maven, runs in Docker; daily cron.</dd></div>
           <div><dt>Broker</dt><dd>Interactive Brokers TWS API; live + paper across
             3+ real accounts.</dd></div>
-          <div><dt>Strategies</dt><dd>Three independent rule-based strategies
-            (SimpleRebalance, LinearRegression, EasyQuitter) behind a common
-            execution interface.</dd></div>
+          <div><dt>Strategies</dt><dd>Two independent rule-based strategies
+            (SimpleRebalance, LinearRegression) behind a common execution
+            interface.</dd></div>
           <div><dt>Data in</dt><dd>Positions, prices, and executions read from
             Interactive Brokers over the same TWS connection.</dd></div>
           <div><dt>Data out</dt><dd>Pushes positions &amp; prices to FamilyFund via
@@ -91,8 +91,6 @@
             <p class="muted">Rules-based target-weight rebalancing.</p></article>
           <article class="card"><h3>LinearRegression</h3>
             <p class="muted">Trend-based signal.</p></article>
-          <article class="card"><h3>EasyQuitter</h3>
-            <p class="muted">Exit / risk rule.</p></article>
         </div>
       </section>
 
@@ -105,33 +103,38 @@
           the targets. Mechanical, not predictive &mdash; no calls on direction,
           no discretionary overrides.
         </p>
-        <div class="shots">
-          <figure class="shot">
-            <video controls preload="metadata" width="1440" height="900"
-              src="assets/dstrader-demos/investment-strategy.mp4"></video>
-            <figcaption><strong>Investment strategy.</strong> Starts from the
-              broad index as the baseline, uses 3x leverage as capital efficiency
-              instead of stock-picking, buckets exposure across All Seasons
-              categories (growth, stability, crypto), and lets a
-              quarterly rebalance hold the targets.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section>
-        <h2>Video walkthroughs</h2>
-        <p class="sub">Narrated explainers over synthetic data &mdash; the strategies,
-          walked step by step.</p>
-        <div class="shots">
-          <figure class="shot">
-            <video controls preload="metadata" width="1440" height="900"
-              src="assets/dstrader-demos/rebalancing-strategy.mp4"></video>
-            <figcaption><strong>Rebalancing strategy.</strong> Why most strategies try
-              to predict the market and this one doesn't &mdash; target weights, the
-              drift problem, trading bands around each target, the sell-high /
-              buy-low triggers, the tight-vs-wide band knob, and the time-based force
-              rebalance that fires every ninety days regardless of drift.</figcaption>
-          </figure>
+        <div class="video-grid">
+          <article class="video-card">
+            <h3 class="video-title">Investment strategy</h3>
+            <p class="video-desc">Starts from the broad index as the baseline,
+              uses 3x leverage as capital efficiency instead of stock-picking,
+              buckets exposure across All Seasons categories (growth, stability,
+              crypto), and lets a quarterly rebalance hold the targets.</p>
+            <button class="video-play"
+              data-src="assets/dstrader-demos/investment-strategy.mp4"
+              data-title="Investment strategy"
+              aria-label="Play Investment strategy video">
+              <img src="assets/dstrader-demos/posters/investment-strategy.jpg"
+                alt="" loading="lazy">
+              <span class="play-overlay" aria-hidden="true">&#9654;</span>
+            </button>
+          </article>
+          <article class="video-card">
+            <h3 class="video-title">Rebalancing strategy</h3>
+            <p class="video-desc">Why most strategies try to predict the market
+              and this one doesn't &mdash; target weights, the drift problem,
+              trading bands around each target, the sell-high / buy-low triggers,
+              the tight-vs-wide band knob, and the time-based force rebalance
+              every ninety days regardless of drift.</p>
+            <button class="video-play"
+              data-src="assets/dstrader-demos/rebalancing-strategy.mp4"
+              data-title="Rebalancing strategy"
+              aria-label="Play Rebalancing strategy video">
+              <img src="assets/dstrader-demos/posters/rebalancing-strategy.jpg"
+                alt="" loading="lazy">
+              <span class="play-overlay" aria-hidden="true">&#9654;</span>
+            </button>
+          </article>
         </div>
       </section>
 
@@ -176,5 +179,6 @@
     </div>
   </footer>
   <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script src="assets/lightbox.js"></script>
 </body>
 </html>

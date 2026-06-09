@@ -123,30 +123,50 @@
         <h2>Video walkthroughs</h2>
         <p class="sub">Narrated screen recordings over anonymized data &mdash; the real
           system, walked section by section.</p>
-        <div class="shots">
-          <figure class="shot">
-            <video controls preload="metadata" width="1440" height="900"
-              src="assets/familyfund-demos/funds-deep-dive.mp4"></video>
-            <figcaption><strong>Funds deep-dive.</strong> One fund, section by section
-              &mdash; highlights, the financial-independence goal, asset groups,
-              value versus the S&amp;P&nbsp;500, forward projections, and the admin-only
-              views.</figcaption>
-          </figure>
-          <figure class="shot">
-            <video controls preload="metadata" width="1440" height="900"
-              src="assets/familyfund-demos/account-deep-dive.mp4"></video>
-            <figcaption><strong>Account deep-dive.</strong> One member's account &mdash;
-              market value, goals, balances over time, performance, matching, and
-              borrowing against shares.</figcaption>
-          </figure>
-          <figure class="shot">
-            <video controls preload="metadata" width="1440" height="900"
-              src="assets/familyfund-demos/share-loans.mp4"></video>
-            <figcaption><strong>Share Loans.</strong> Borrowing shares against your
-              own balance &mdash; the create form, an active loan's progress and
-              schedule, admin readjustment, the payment simulator, and the
-              fund-level loan exposure rollup.</figcaption>
-          </figure>
+        <div class="video-grid">
+          <article class="video-card">
+            <h3 class="video-title">Funds deep-dive</h3>
+            <p class="video-desc">One fund, section by section &mdash; highlights,
+              the financial-independence goal, asset groups, value versus the
+              S&amp;P&nbsp;500, forward projections, and the admin-only views.</p>
+            <button class="video-play"
+              data-src="assets/familyfund-demos/funds-deep-dive.mp4"
+              data-title="Funds deep-dive"
+              aria-label="Play Funds deep-dive video">
+              <img src="assets/familyfund-demos/posters/funds-deep-dive.jpg"
+                alt="" loading="lazy">
+              <span class="play-overlay" aria-hidden="true">&#9654;</span>
+            </button>
+          </article>
+          <article class="video-card">
+            <h3 class="video-title">Account deep-dive</h3>
+            <p class="video-desc">One member's account &mdash; market value, goals,
+              balances over time, performance, matching, and borrowing against
+              shares.</p>
+            <button class="video-play"
+              data-src="assets/familyfund-demos/account-deep-dive.mp4"
+              data-title="Account deep-dive"
+              aria-label="Play Account deep-dive video">
+              <img src="assets/familyfund-demos/posters/account-deep-dive.jpg"
+                alt="" loading="lazy">
+              <span class="play-overlay" aria-hidden="true">&#9654;</span>
+            </button>
+          </article>
+          <article class="video-card">
+            <h3 class="video-title">Share Loans</h3>
+            <p class="video-desc">Borrowing shares against your own balance &mdash;
+              the create form, an active loan's progress and schedule, admin
+              readjustment, the payment simulator, and the fund-level loan
+              exposure rollup.</p>
+            <button class="video-play"
+              data-src="assets/familyfund-demos/share-loans.mp4"
+              data-title="Share Loans"
+              aria-label="Play Share Loans video">
+              <img src="assets/familyfund-demos/posters/share-loans.jpg"
+                alt="" loading="lazy">
+              <span class="play-overlay" aria-hidden="true">&#9654;</span>
+            </button>
+          </article>
         </div>
       </section>
 
@@ -228,42 +248,6 @@
     </div>
   </footer>
   <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
-  <script>
-    (function () {
-      var box = null;
-      function close() {
-        if (!box) return;
-        box.remove();
-        box = null;
-        document.body.classList.remove('lightbox-open');
-        document.removeEventListener('keydown', onKey);
-      }
-      function onKey(e) { if (e.key === 'Escape') close(); }
-      function open(src, alt) {
-        close();
-        box = document.createElement('div');
-        box.className = 'lightbox';
-        box.innerHTML = '<button class="lightbox-close" aria-label="Close">×</button>';
-        var img = document.createElement('img');
-        img.src = src;
-        img.alt = alt || '';
-        box.appendChild(img);
-        box.addEventListener('click', function (e) {
-          if (e.target === box || e.target.classList.contains('lightbox-close') || e.target === img) close();
-        });
-        document.body.appendChild(box);
-        document.body.classList.add('lightbox-open');
-        document.addEventListener('keydown', onKey);
-      }
-      document.querySelectorAll('.shot a').forEach(function (a) {
-        var img = a.querySelector('img');
-        if (!img) return;
-        a.addEventListener('click', function (e) {
-          e.preventDefault();
-          open(a.getAttribute('href') || img.src, img.alt);
-        });
-      });
-    })();
-  </script>
+  <script src="assets/lightbox.js"></script>
 </body>
 </html>
