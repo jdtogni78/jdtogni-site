@@ -48,7 +48,7 @@
     document.addEventListener('keydown', onKey);
   }
 
-  document.querySelectorAll('.shot a').forEach(function (a) {
+  document.querySelectorAll('.shot a, .shot-thumb').forEach(function (a) {
     var img = a.querySelector('img');
     if (!img) return;
     a.addEventListener('click', function (e) {
