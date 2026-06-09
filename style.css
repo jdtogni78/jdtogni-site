@@ -317,6 +317,8 @@ dl.spec dd { margin: 0; }
 .shot-thumb:hover { border-color: var(--ink); }
 .shot-thumb:hover .zoom-overlay { transform: translate(-50%, -50%) scale(1.08); background: rgba(0, 0, 0, 0.85); }
 .shot-thumb img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
