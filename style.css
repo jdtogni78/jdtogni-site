@@ -367,17 +367,15 @@ dl.spec dd { margin: 0; }
   inset: 0;
   background: rgba(10, 12, 16, 0.92);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   z-index: 100;
   cursor: zoom-out;
   padding: 24px;
   overflow: auto;
 }
-.lightbox img,
-.lightbox video {
+.lightbox img {
   max-width: 100%;
-  max-height: calc(100vh - 64px);
   height: auto;
   display: block;
   border-radius: 8px;
@@ -385,7 +383,16 @@ dl.spec dd { margin: 0; }
   cursor: zoom-out;
   background: #000;
 }
-.lightbox video { cursor: default; }
+.lightbox video {
+  max-width: 100%;
+  max-height: calc(100vh - 64px);
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  cursor: default;
+  background: #000;
+}
 .lightbox-close {
   position: fixed;
   top: 14px;
