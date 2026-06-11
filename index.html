@@ -15,8 +15,15 @@
     <div class="wrap">
       <a class="brand" href="index.html">Daniel&nbsp;Togni</a>
       <nav class="nav">
-        <a href="dstrader.html">DS&nbsp;Trader</a>
-        <a href="familyfund.html">FamilyFund</a>
+        <div class="nav-drop">
+          <button class="nav-drop-btn" aria-haspopup="true" aria-expanded="false">Projects &#9662;</button>
+          <div class="nav-drop-menu">
+            <a href="dstrader.html">DS&nbsp;Trader</a>
+            <a href="familyfund.html">FamilyFund</a>
+            <a href="index.html#mowaiter">MoWaiter</a>
+            <a href="index.html#evergreen">Evergreen&nbsp;SDK</a>
+          </div>
+        </div>
         <a href="resume.pdf">Resume</a>
         <a href="https://github.com/jdtogni78">GitHub</a>
       </nav>
@@ -74,8 +81,13 @@
               <span class="tag">Docker · cron</span>
               <span class="tag">~5y live</span>
             </div>
+            <div class="card-thumb">
+              <img loading="lazy"
+                src="assets/dstrader-demos/posters/investment-strategy.jpg"
+                alt="DS Trader investment-strategy explainer frame.">
+            </div>
             <div class="links">
-              <a href="dstrader.html">Read more &rarr;</a>
+              <a class="stretch" href="dstrader.html">Read more &rarr;</a>
             </div>
           </article>
           <article class="card">
@@ -92,18 +104,23 @@
               <span class="tag">Livewire / Tailwind</span>
               <span class="tag">2,200+ tests</span>
             </div>
+            <div class="card-thumb">
+              <img loading="lazy"
+                src="assets/familyfund-shots/01-dashboard.webp"
+                alt="FamilyFund dashboard — navigation hub.">
+            </div>
             <div class="links">
-              <a href="familyfund.html">Read more &rarr;</a>
+              <a class="stretch" href="familyfund.html">Read more &rarr;</a>
             </div>
           </article>
         </div>
       </section>
 
-      <section>
+      <section id="ventures">
         <h2>Startup track record</h2>
         <p class="sub">Before Visa: a co-founded company and an exit.</p>
         <div class="cards">
-          <article class="card">
+          <article class="card" id="mowaiter">
             <h3>MoWaiter &mdash; co-founder</h3>
             <p class="muted">
               Smartphone dine-in ordering, payment, and waiter messaging
@@ -117,8 +134,16 @@
               <span class="tag">AWS</span>
               <span class="tag">co-founder · CTO</span>
             </div>
+            <a class="shot-thumb contain"
+              href="assets/venture-shots/mowaiter-restaurant-home.png"
+              aria-label="Expand MoWaiter app screenshot">
+              <img loading="lazy"
+                src="assets/venture-shots/mowaiter-restaurant-home.png"
+                alt="MoWaiter iOS app — restaurant landing screen with Order & Pay, live at Mezcal restaurant, San Jose (2013).">
+              <span class="zoom-overlay" aria-hidden="true">&#8689;</span>
+            </a>
           </article>
-          <article class="card">
+          <article class="card" id="evergreen">
             <h3>TrialPay &rarr; Visa &mdash; Evergreen SDK</h3>
             <p class="muted">
               Lead / main contributor on <strong>Evergreen</strong>, TrialPay's
@@ -134,6 +159,14 @@
             <div class="links">
               <a href="https://github.com/jdtogni78/EvergreenIOS">Evergreen iOS repo &rarr;</a>
             </div>
+            <a class="shot-thumb"
+              href="assets/venture-shots/trialpay-home-2014.png"
+              aria-label="Expand TrialPay homepage screenshot">
+              <img loading="lazy"
+                src="assets/venture-shots/trialpay-home-2014.png"
+                alt="trialpay.com homepage, December 2014 — 'Introducing Evergreen' hero announcing the SDK.">
+              <span class="zoom-overlay" aria-hidden="true">&#8689;</span>
+            </a>
           </article>
         </div>
       </section>
@@ -149,5 +182,6 @@
     </div>
   </footer>
   <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script src="assets/lightbox.js"></script>
 </body>
 </html>
