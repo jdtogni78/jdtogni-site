@@ -63,4 +63,19 @@
       openVideo(btn.getAttribute('data-src'), btn.getAttribute('data-title'));
     });
   });
+
+  document.querySelectorAll('.nav-drop-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = btn.parentElement.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('click', function () {
+    document.querySelectorAll('.nav-drop.open').forEach(function (d) {
+      d.classList.remove('open');
+      var b = d.querySelector('.nav-drop-btn');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    });
+  });
 })();
